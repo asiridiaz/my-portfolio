@@ -1,60 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asiri Dias - Portfolio</title>
+    <title>Asiri Dias - Lead Observability Engineer</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ==========================================================================
-           CSS VARIABLES (Theme Setup)
+           MODERN THEME VARIABLES
            ========================================================================== */
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --nav-bg: rgba(255, 255, 255, 0.9);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --transition: all 0.3s ease;
+            --bg-base: #09090b;
+            --bg-surface: #18181b;
+            --bg-surface-hover: #27272a;
+            --text-primary: #f8fafc;
+            --text-secondary: #a1a1aa;
+            --accent-main: #10b981;
+            --accent-gradient: linear-gradient(135deg, #10b981, #3b82f6);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(24, 24, 27, 0.7);
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.15);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        [data-theme="dark"] {
-            --primary-color: #3b82f6;
-            --primary-hover: #60a5fa;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --nav-bg: rgba(15, 23, 42, 0.9);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        [data-theme="light"] {
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-surface-hover: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --accent-main: #2563eb;
+            --accent-gradient: linear-gradient(135deg, #2563eb, #8b5cf6);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.15);
         }
 
         /* ==========================================================================
-           BASE STYLES
+           BASE & TYPOGRAPHY
            ========================================================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            transition: var(--transition);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.02em;
         }
 
         a {
@@ -68,119 +83,143 @@
 
         img {
             max-width: 100%;
-            height: auto;
+            border-radius: 12px;
         }
 
+        /* Increased max-width to comfortably fit 4 columns */
         .container {
-            max-width: 1200px;
+            max-width: 1350px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         section {
-            padding: 100px 0;
+            padding: 120px 0;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            font-weight: 800;
+            background: var(--text-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-color);
-            margin: 10px auto 0;
-            border-radius: 2px;
+        .highlight {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .btn {
-            display: inline-block;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
             cursor: pointer;
             transition: var(--transition);
-            border: 2px solid transparent;
+            border: 1px solid transparent;
         }
 
         .btn-primary {
-            background: var(--primary-color);
-            color: #fff;
+            background: var(--text-primary);
+            color: var(--bg-base);
         }
 
         .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+            opacity: 0.9;
         }
 
         .btn-outline {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-primary);
         }
 
         .btn-outline:hover {
-            background: var(--primary-color);
-            color: #fff;
-            transform: translateY(-2px);
+            background: var(--bg-surface-hover);
+            border-color: var(--text-secondary);
         }
 
         /* ==========================================================================
-           NAVIGATION
+           FLOATING NAVIGATION
            ========================================================================== */
         header.navbar {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px);
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1000px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
             z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 60px;
+            padding: 0 24px;
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 24px;
             align-items: center;
         }
 
         .nav-links a {
+            font-size: 0.9rem;
             font-weight: 500;
+            color: var(--text-secondary);
             transition: var(--transition);
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: var(--primary-color);
+            color: var(--text-primary);
         }
 
         .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 1.2rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-surface-hover);
+            transform: rotate(15deg);
         }
 
         .hamburger {
@@ -188,336 +227,373 @@
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--text-main);
+            color: var(--text-primary);
             cursor: pointer;
         }
 
         /* ==========================================================================
-           HERO SECTION
+           HERO & ABOUT SECTIONS
            ========================================================================== */
         #home {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 70px;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-main);
+            filter: blur(150px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: -1;
         }
 
         .hero-content {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
             align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-            width: 100%;
-        }
-
-        .hero-text {
-            flex: 1;
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
+            font-size: 4.5rem;
+            line-height: 1.1;
             margin-bottom: 20px;
         }
 
         .typing-container {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-weight: 600;
-            height: 35px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            height: 40px;
         }
 
         .hero-text p {
-            color: var(--text-muted);
-            margin-bottom: 30px;
+            color: var(--text-secondary);
             font-size: 1.1rem;
+            margin-bottom: 40px;
             max-width: 500px;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
         .hero-img-container {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
+            position: relative;
         }
 
         .hero-img {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
+            width: 100%;
+            aspect-ratio: 1/1;
             object-fit: cover;
-            border: 5px solid var(--card-bg);
-            box-shadow: var(--shadow);
+            border-radius: 30px;
+            transform: rotate(3deg);
             transition: var(--transition);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
         }
 
-        .hero-img:hover {
-            transform: scale(1.02);
+        .hero-img-container:hover .hero-img {
+            transform: rotate(0deg) scale(1.02);
         }
 
-        /* ==========================================================================
-           ABOUT SECTION
-           ========================================================================== */
-        .about-content {
+        .about-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: var(--shadow-sm);
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 3fr 2fr;
             gap: 40px;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0.05;
+            filter: blur(40px);
         }
 
         .about-text p {
-            margin-bottom: 15px;
-            color: var(--text-muted);
+            margin-bottom: 20px;
+            color: var(--text-secondary);
         }
 
         .personal-info ul li {
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .personal-info i {
-            color: var(--primary-color);
-            width: 20px;
-            text-align: center;
-        }
-
-        /* ==========================================================================
-           EXPERIENCE SECTION (Timeline)
-           ========================================================================== */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background: var(--border-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background: inherit;
-            width: 50%;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background: var(--bg-color);
-            border: 4px solid var(--primary-color);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .left {
-            left: 0;
-        }
-
-        .right {
-            left: 50%;
-        }
-
-        .right::after {
-            left: -10px;
-        }
-
-        .timeline-content {
-            padding: 20px;
-            background: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .timeline-date {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-
-        .timeline-content h3 {
-            margin-bottom: 5px;
-        }
-
-        .timeline-content h4 {
-            color: var(--text-muted);
-            font-weight: 500;
-            margin-bottom: 10px;
+            gap: 12px;
             font-size: 0.95rem;
         }
 
-        .timeline-content p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .personal-info i {
+            color: var(--accent-main);
+            background: var(--bg-base);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
         }
 
         /* ==========================================================================
-           EDUCATION SECTION
+           EXPERIENCE SECTION (Minimalist Timeline)
            ========================================================================== */
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .timeline {
+            border-left: 2px solid var(--border-color);
+            padding-left: 40px;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
-        .edu-card {
-            background: var(--card-bg);
+        .timeline-item {
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -47px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-base);
+            border: 2px solid var(--accent-main);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-main);
+        }
+
+        .timeline-date {
+            font-family: 'Outfit', sans-serif;
+            color: var(--accent-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            border-top: 4px solid var(--primary-color);
+            border-radius: 16px;
             transition: var(--transition);
         }
 
-        .edu-card:hover {
-            transform: translateY(-5px);
+        .timeline-content:hover {
+            border-color: var(--text-secondary);
+            transform: translateX(5px);
         }
 
-        .edu-card i {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
         }
 
-        .edu-year {
-            background: var(--bg-color);
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
+        .timeline-content h4 {
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .timeline-content ul li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .timeline-content ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-main);
         }
 
         /* ==========================================================================
-           SKILLS SECTION
+           GRID SECTIONS (4-Column Layouts)
            ========================================================================== */
-        .skills-container {
+        .bento-grid-4 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
         }
 
-        .skill-category {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
+        /* ==========================================================================
+           CENTERED GRID FOR CERTIFICATIONS
+           ========================================================================== */
+        .cert-grid-centered {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
         }
 
-        .skill-category h3 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+        .cert-grid-centered>.cert-card {
+            flex: 0 0 calc(25% - 18px);
+            /* Forces 4 columns */
+            width: 100%;
+            /* Ensures internal elements behave */
         }
 
+        @media (max-width: 1200px) {
+            .cert-grid-centered>.cert-card {
+                flex: 0 0 calc(50% - 12px);
+                /* 2 columns on tablet */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cert-grid-centered>.cert-card {
+                flex: 0 0 100%;
+                /* 1 column on mobile */
+            }
+        }
+
+        .bento-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-secondary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Specific modifications for sections */
+        .cert-card {
+            flex-direction: row;
+            align-items: center;
+            padding: 20px;
+            gap: 16px;
+        }
+
+        .cert-card i {
+            font-size: 1.8rem;
+            color: var(--accent-main);
+        }
+
+        .cert-card h3 {
+            font-size: 0.95rem;
+            line-height: 1.3;
+        }
+
+        /* Skills Tags */
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
+            margin-top: auto;
         }
 
         .skill-tag {
-            background: var(--bg-color);
+            background: var(--bg-base);
             border: 1px solid var(--border-color);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
             transition: var(--transition);
         }
 
-        .skill-tag:hover {
-            background: var(--primary-color);
-            color: #fff;
-            border-color: var(--primary-color);
+        .bento-card:hover .skill-tag {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
         }
 
-        /* ==========================================================================
-           PROJECTS SECTION
-           ========================================================================== */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
+        /* Projects */
         .project-card {
-            background: var(--card-bg);
-            border-radius: 15px;
+            padding: 0;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .project-img {
             width: 100%;
-            height: 200px;
-            background: var(--border-color);
-            /* Placeholder bg */
+            height: 160px;
             object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+            border-radius: 20px 20px 0 0;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
         }
 
         .project-info {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+            z-index: 1;
+            background: var(--bg-surface);
         }
 
         .project-title {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.3;
         }
 
         .project-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 10px;
+            flex-grow: 1;
         }
 
-        .project-tech {
+        .project-links {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-
-        .project-tech span {
-            font-size: 0.75rem;
-            background: var(--bg-color);
-            padding: 4px 8px;
-            border-radius: 4px;
+            gap: 16px;
         }
 
         .project-links a {
-            margin-right: 15px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--primary-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-main);
         }
 
         /* ==========================================================================
@@ -525,78 +601,69 @@
            ========================================================================== */
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-        }
-
-        .contact-info {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
         }
 
         .contact-info h3 {
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 16px;
         }
 
         .contact-info p {
-            margin-bottom: 20px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
+            margin-bottom: 32px;
         }
 
-        .social-links {
+        .social-row {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 16px;
+            margin-top: 32px;
         }
 
-        .social-links a {
-            width: 40px;
-            height: 40px;
+        .social-row a {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
             border-radius: 50%;
-            background: var(--bg-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-color);
+            font-size: 1.2rem;
             transition: var(--transition);
         }
 
-        .social-links a:hover {
-            background: var(--primary-color);
-            color: #fff;
-        }
-
-        .contact-form {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
+        .social-row a:hover {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            transform: translateY(-3px);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 16px 20px;
+            background: var(--bg-surface);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-color);
-            color: var(--text-main);
+            border-radius: 12px;
+            color: var(--text-primary);
             font-family: inherit;
+            font-size: 1rem;
             transition: var(--transition);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: var(--accent-main);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
         }
 
         textarea.form-control {
-            height: 150px;
+            min-height: 160px;
             resize: vertical;
         }
 
@@ -604,9 +671,10 @@
            FOOTER & UTILS
            ========================================================================== */
         footer {
-            background: var(--card-bg);
-            padding: 30px 0;
+            padding: 40px 0;
             text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
             border-top: 1px solid var(--border-color);
         }
 
@@ -614,18 +682,18 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: var(--primary-color);
-            color: #fff;
+            background: var(--text-primary);
+            color: var(--bg-base);
             border: none;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
             z-index: 99;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-sm);
         }
 
         #scrollToTop.show {
@@ -633,11 +701,14 @@
             visibility: visible;
         }
 
-        /* Animation Classes */
+        #scrollToTop:hover {
+            transform: translateY(-3px);
+        }
+
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal.active {
@@ -646,21 +717,34 @@
         }
 
         /* ==========================================================================
-           RESPONSIVE DESIGN
+           RESPONSIVE
            ========================================================================== */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
+            .bento-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .hero-content {
-                flex-direction: column-reverse;
+                grid-template-columns: 1fr;
                 text-align: center;
-                gap: 30px;
             }
 
             .hero-text p {
-                margin: 0 auto 30px;
+                margin: 0 auto 40px;
             }
 
             .hero-buttons {
                 justify-content: center;
+            }
+
+            .hero-img {
+                width: 70%;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .about-card {
+                grid-template-columns: 1fr;
             }
 
             .contact-container {
@@ -669,93 +753,123 @@
         }
 
         @media (max-width: 768px) {
+            header.navbar {
+                width: 100%;
+                top: 0;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                border-top: none;
+            }
+
             .hamburger {
                 display: block;
             }
 
             .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 60px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--card-bg);
+                height: calc(100vh - 60px);
+                background: var(--bg-surface);
                 flex-direction: column;
                 justify-content: center;
                 transition: var(--transition);
+                gap: 32px;
             }
 
             .nav-links.active {
                 left: 0;
             }
 
-            .about-content {
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .bento-grid-4 {
                 grid-template-columns: 1fr;
             }
 
-            .timeline::after {
-                left: 31px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .timeline-item::after {
-                left: 21px;
-            }
-
-            .right {
-                left: 0;
-            }
-
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
-            .hero-img {
-                width: 250px;
-                height: 250px;
+            .timeline {
+                margin-left: 0;
+                padding-left: 20px;
+            }
+
+            .timeline-item::before {
+                left: -27px;
+            }
+
+            .timeline-content {
+                padding: 20px;
             }
         }
 
         /* ==========================================================================
-           CERTIFICATIONS SECTION
+           MODERN TECH BADGES (SKILLS SECTION)
            ========================================================================== */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .cert-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
+        .skill-tags-modern {
             display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .tech-badge {
+            display: inline-flex;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
             transition: var(--transition);
-            border-left: 4px solid var(--primary-color);
+            backdrop-filter: blur(10px);
+            cursor: default;
         }
 
-        .cert-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+        /* Desaturate logos by default for a clean look */
+        .tech-badge img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            transition: var(--transition);
+            filter: grayscale(100%) brightness(1.5) opacity(0.7);
         }
 
-        .cert-card i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
+        [data-theme="light"] .tech-badge img {
+            filter: grayscale(100%) opacity(0.6);
         }
 
-        .cert-card h3 {
-            font-size: 0.95rem;
-            line-height: 1.4;
-            font-weight: 600;
+        .tech-badge i {
+            font-size: 1.1rem;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        /* Hover Effect: Show official brand colors & pop up */
+        .tech-badge:hover {
+            background: var(--bg-surface-hover);
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .tech-badge:hover img {
+            filter: none !important;
+            opacity: 1 !important;
+        }
+
+        .tech-badge:hover i {
+            color: var(--accent-main);
         }
     </style>
 </head>
@@ -765,21 +879,19 @@
     <header class="navbar">
         <div class="container nav-container">
             <a href="#home" class="logo">Asiri.</a>
-
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#certifications">Certs</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="/cv/my-cv.pdf" class="btn btn-primary" download>Download CV</a></li>
+                    <li class="mobile-only-btn"><a href="cv/my-cv.pdf" class="btn btn-primary" download
+                            style="font-size: 0.9rem;">CV</a></li>
                     <li>
-                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
-                            <i class="fas fa-moon"></i>
+                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                            <i class="fas fa-sun"></i>
                         </button>
                     </li>
                 </ul>
@@ -794,15 +906,15 @@
         <div class="container hero-content">
             <div class="hero-text reveal">
                 <h3>Hello, I'm</h3>
-                <h1>Asiri Dias </h1>
+                <h1>Asiri <span class="highlight">Dias</span></h1>
                 <div class="typing-container">
                     <span id="typing-text"></span><span class="cursor">|</span>
                 </div>
                 <p>Specialising in the architecture and optimisation of Elasticsearch clusters and engineering robust
-                    observability pipelines. </p>
+                    observability pipelines.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Contact Me</a>
-                    <a href="#projects" class="btn btn-outline">View Projects</a>
+                    <a href="#contact" class="btn btn-primary">Let's Talk</a>
+                    <a href="#projects" class="btn btn-outline">View Work</a>
                 </div>
             </div>
             <div class="hero-img-container reveal">
@@ -813,294 +925,106 @@
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title reveal">About Me</h2>
-            <div class="about-content reveal">
+            <h2 class="section-title reveal">About <span class="highlight">Me</span></h2>
+            <div class="about-card reveal">
                 <div class="about-text">
-                    <p>As a Lead Observability Engineer at Next Technology, I specialize in the architecture, optimization, and governance of enterprise-wide observability platforms. I spearhead cost optimization initiatives and enforce strict observability standards across all departments to ensure complete financial transparency and platform visibility.</p>
-                    <p>My expertise spans across Dynatrace APM and the Elastic Stack (ELK), where I design OpenPipelines for advanced OTel telemetry processing and maintain high-performance log ingestion systems. Beyond technical architecture, I am passionate about team leadership—mentoring engineers, defining measurable KPIs, and fostering a culture of high performance and cross-functional collaboration.</p>
+                    <p>As a Lead Observability Engineer at Next Technology, I specialize in the architecture,
+                        optimization, and governance of enterprise-wide observability platforms. I spearhead cost
+                        optimization initiatives and enforce strict observability standards across all departments to
+                        ensure complete financial transparency and platform visibility.</p>
+                    <p>My expertise spans across Dynatrace APM and the Elastic Stack (ELK), where I design OpenPipelines
+                        for advanced OTel telemetry processing and maintain high-performance log ingestion systems.
+                        Beyond technical architecture, I am passionate about team leadership—mentoring engineers,
+                        defining measurable KPIs, and fostering a culture of high performance and cross-functional
+                        collaboration.</p>
                 </div>
                 <div class="personal-info">
                     <ul>
-                        <li><i class="fas fa-user"></i> <strong>Name:</strong> Asiri Dias </li>
-                        <li><i class="fas fa-envelope"></i> <strong>Email:</strong> asiri.cmb@gmail.com </li>
-                        <li><i class="fas fa-phone"></i> <strong>Phone:</strong> +94 772 238 676 </li>
-                        <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Colombo, Sri Lanka </li>
+                        <li><i class="fas fa-envelope"></i> <span>asiri.cmb@gmail.com</span></li>
+                        <li><i class="fas fa-phone"></i> <span>+94 772 238 676</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Colombo, Sri Lanka</span></li>
+                        <li><i class="fas fa-download"></i> <a href="cv/my-cv.pdf" download
+                                style="text-decoration: underline; color: var(--accent-main);">Download Resumé</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="bg-alt">
+    <section id="experience">
         <div class="container">
-            <h2 class="section-title reveal">Experience</h2>
+            <h2 class="section-title reveal">Professional <span class="highlight">Experience</span></h2>
             <div class="timeline">
 
-                <div class="timeline-item left reveal">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <div class="timeline-date">Feb 2026 - Present</div>
                         <h3>Lead Observability Engineer</h3>
                         <h4>Next Technology | Colombo, Sri Lanka (Hybrid)</h4>
-                        <ul
-                            style="padding-left: 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.6;">
-                            <li><strong>Cost Optimization & Standardization:</strong> Spearheaded enterprise-wide cost
-                                optimization and enforced strict observability standards. Developed cross-platform
-                                dashboards for financial transparency.</li>
-                            <li><strong>Team Leadership:</strong> Managed and mentored engineers using 1-on-1s, defined
-                                KPIs, and utilized the 9-box grid matrix for performance evaluations.</li>
-                            <li><strong>Architecture & Governance:</strong> Partnered with stakeholders for scalable
-                                observability strategies. Led the overhaul of Dynatrace access management
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li><strong>Cost Optimization:</strong> Spearheaded enterprise-wide cost optimization and
+                                enforced strict observability standards.</li>
+                            <li><strong>Team Leadership:</strong> Managed and mentored engineers using 1-on-1s and 9-box
+                                grid matrix.</li>
+                            <li><strong>Architecture & Governance:</strong> Led overhaul of Dynatrace access management
                                 (least-privilege, standardized tags/zones).</li>
                             <li><strong>Dynatrace & ELK:</strong> Designed OpenPipelines for OTel data. Administered
-                                full-stack monitoring (APM, RUM, Log Monitoring, AI-Alerting) and maintained
-                                high-performance Elasticsearch/Logstash pipelines.</li>
-                            <li><strong>IaaC Alignment:</strong> Utilized Terraform and Kubernetes best practices for
-                                scalable deployments.</li>
+                                full-stack monitoring and maintained high-performance pipelines.</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item right reveal">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <div class="timeline-date">Oct 2024 - Nov 2025</div>
                         <h3>Senior ELK Engineer</h3>
                         <h4>Next Technology | Colombo, Sri Lanka (Hybrid)</h4>
-                        <ul
-                            style="padding-left: 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.6;">
-                            <li>Configured and optimized Elasticsearch clusters for high performance and reliability.
-                            </li>
-                            <li>Implemented and maintained multi-pipelines (Logstash/Filebeat) for diverse data sources
-                                and real-time log pickups.</li>
-                            <li>Parsed IPG logs to create actionable Kibana and Grafana dashboards tailored to business
-                                needs.</li>
-                            <li>Developed custom PowerShell scripts for automation and used Terraform/Docker Compose for
-                                test environments.</li>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>Configured and optimized Elasticsearch clusters for high performance.</li>
+                            <li>Implemented multi-pipelines (Logstash/Filebeat) for real-time log pickups.</li>
+                            <li>Parsed IPG logs to create actionable Kibana and Grafana dashboards.</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item left reveal">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <div class="timeline-date">May 2023 - Oct 2024</div>
                         <h3>ELK Engineer</h3>
                         <h4>Next Technology | Colombo, Sri Lanka (Hybrid)</h4>
-                        <ul
-                            style="padding-left: 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.6;">
+                        <ul style="list-style-type: none; padding-left: 0;">
                             <li>Monitored and optimized Elasticsearch clusters and troubleshoot Logstash pipelines.</li>
                             <li>Developed and managed test environments using Docker Compose.</li>
-                            <li>Monitored Filebeat for efficient log pickups and processed IPG logs for visualization.
-                            </li>
-                            <li>Collaborated with teams to set up local clusters via Terraform and created PowerShell
-                                scripts for daily tasks.</li>
+                            <li>Collaborated with teams to set up local clusters via Terraform.</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item right reveal">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <div class="timeline-date">Aug 2022 - Sep 2023</div>
                         <h3>Elasticsearch Engineer</h3>
                         <h4>Nexon Asia Pacific | Remote (Contract)</h4>
-                        <ul
-                            style="padding-left: 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.6;">
-                            <li>Created custom integration policies, ingest pipelines, index templates, and ILMs for
-                                TCP/UDP, JSON, and SYSLOG data.</li>
-                            <li>Maintained centralized Logstash pipelines, ensuring alignment with ECS (Elastic Common
-                                Schema) for ML and threat detection.</li>
-                            <li>Managed Elastic Kibana spaces using Postman, AWS Container Services, and Docker.</li>
-                            <li>Upgraded Elastic clusters, Cloud Agents, and containerized instances while actively
-                                managing exception lists based on SOC inputs.</li>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>Created custom integration policies and ingest pipelines for TCP/UDP, JSON, and SYSLOG
+                                data.</li>
+                            <li>Maintained centralized Logstash pipelines, ensuring alignment with ECS.</li>
+                            <li>Upgraded Elastic clusters, Cloud Agents, and actively managed exception lists based on
+                                SOC inputs.</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item left reveal">
+                <div class="timeline-item reveal">
                     <div class="timeline-content">
                         <div class="timeline-date">Nov 2018 - Jul 2023</div>
                         <h3>Assistant Manager L2 System Support</h3>
-                        <h4>PickMe | Colombo, Sri Lanka (Full-time)</h4>
-                        <ul
-                            style="padding-left: 20px; color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.6;">
-                            <li>E2E accountable for addressing production issues, ensuring SLA compliance, and
-                                performing RCA.</li>
-                            <li>Implemented the ELK stack (Beats & Logstash) to analyze logs across various
-                                microservices.</li>
-                            <li>Maintained backups in GCP storage and monitored Elasticsearch clusters/curator jobs.
-                            </li>
-                            <li>Created visibility via daily/weekly issue summary reports and trend analyses for
-                                stakeholders.</li>
+                        <h4>PickMe | Colombo, Sri Lanka</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>E2E accountable for addressing production issues and ensuring SLA compliance.</li>
+                            <li>Implemented the ELK stack to analyze logs across various microservices.</li>
+                            <li>Maintained backups in GCP storage and monitored Elasticsearch clusters.</li>
                         </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="certifications">
-        <div class="container">
-            <h2 class="section-title reveal">Certifications & Training</h2>
-            <div class="cert-grid">
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Elastic Certified Engineer</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-search"></i>
-                    <h3>Elasticsearch Engineer (On-Demand)</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-cloud"></i>
-                    <h3>Associate Cloud Engineer Certification</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-network-wired"></i>
-                    <h3>Implement Load Balancing on Compute Engine</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fab fa-linux"></i>
-                    <h3>Red Hat Certified System Administrator (RHCSA)</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-cubes"></i>
-                    <h3>Advanced Terraform (2020)</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-cube"></i>
-                    <h3>Learning Terraform</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-database"></i>
-                    <h3>S101: ScyllaDB Essentials</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-stream"></i>
-                    <h3>Getting Started with Redpanda</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-tasks"></i>
-                    <h3>Scrum Foundation Professional Certificate</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-award"></i>
-                    <h3>Six Sigma: Black Belt</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-award"></i>
-                    <h3>Six Sigma: Green Belt</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-microphone-alt"></i>
-                    <h3>Toastmasters Speech Craft</h3>
-                </div>
-
-                <div class="cert-card reveal">
-                    <i class="fas fa-users-cog"></i>
-                    <h3>Strategic Task Force Development Training</h3>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title reveal">Education</h2>
-            <div class="education-grid">
-
-                <div class="edu-card reveal">
-                    <i class="fas fa-graduation-cap"></i>
-                    <div class="edu-year">Feb 2022 - Sep 2022 </div>
-                    <h3>Master of Business Administration </h3>
-                    <p>University of Gloucestershire (Master Stage) </p>
-                </div>
-
-                <div class="edu-card reveal">
-                    <i class="fas fa-university"></i>
-                    <div class="edu-year">May 2021 - Jan 2022 </div>
-                    <h3>PG Degree, Strategic Management </h3>
-                    <p>IDM Campus </p>
-                </div>
-
-                <div class="edu-card reveal">
-                    <i class="fas fa-school"></i>
-                    <div class="edu-year">2000 - 2010 </div>
-                    <h3>Advanced Level, Business/Commerce </h3>
-                    <p>De La Salle College, Colombo </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="bg-alt">
-        <div class="container">
-            <h2 class="section-title reveal">Technical & Leadership Skills</h2>
-            <div class="skills-container">
-
-                <div class="skill-category reveal">
-                    <h3>Observability & Monitoring</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Dynatrace APM</span>
-                        <span class="skill-tag">Elastic Stack (ELK)</span>
-                        <span class="skill-tag">Elasticsearch</span>
-                        <span class="skill-tag">Logstash / Filebeat</span>
-                        <span class="skill-tag">Kibana</span>
-                        <span class="skill-tag">Grafana</span>
-                        <span class="skill-tag">OpenTelemetry (OTel)</span>
-                    </div>
-                </div>
-
-                <div class="skill-category reveal">
-                    <h3>Cloud & Infrastructure</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">Docker Products</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Microsoft Azure</span>
-                        <span class="skill-tag">AWS / Amazon ECS</span>
-                        <span class="skill-tag">GCP</span>
-                        <span class="skill-tag">Ansible</span>
-                        <span class="skill-tag">Linux / Windows</span>
-                    </div>
-                </div>
-
-                <div class="skill-category reveal">
-                    <h3>Engineering & Scripting</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Bash</span>
-                        <span class="skill-tag">PowerShell</span>
-                        <span class="skill-tag">JavaScript / PHP</span>
-                        <span class="skill-tag">SQL / MySQL / NoSQL</span>
-                        <span class="skill-tag">Microservices</span>
-                        <span class="skill-tag">Apache Kafka</span>
-                        <span class="skill-tag">Postman API</span>
-                        <span class="skill-tag">Git / GitHub</span>
-                    </div>
-                </div>
-
-                <div class="skill-category reveal">
-                    <h3>Leadership & Management</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Team Leadership</span>
-                        <span class="skill-tag">Mentoring & 9-Box</span>
-                        <span class="skill-tag">Operations Management</span>
-                        <span class="skill-tag">Technical Support</span>
-                        <span class="skill-tag">System Administration</span>
-                        <span class="skill-tag">Cross-Functional Collaboration</span>
                     </div>
                 </div>
 
@@ -1110,70 +1034,69 @@
 
     <section id="projects">
         <div class="container">
-            <h2 class="section-title reveal">Featured Projects</h2>
-            <div class="projects-grid">
+            <h2 class="section-title reveal">Featured <span class="highlight">Projects</span></h2>
+            <div class="bento-grid-4">
 
-                <div class="project-card reveal">
-                    <div class="project-img"
-                        style="background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80') center/cover;">
-                    </div>
+                <div class="bento-card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80"
+                        alt="Observability Dashboard" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">Centralised Observability Platform</h3>
+                        <h3 class="project-title">Centralised Observability</h3>
                         <p class="project-desc">Architected a highly available Elasticsearch cluster and Dynatrace
-                            monitoring environment with OTel ingestion pipelines.</p>
-                        <div class="project-tech">
-                            <span>ELK</span><span>Dynatrace</span><span>OTel</span>
+                            monitoring environment.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">ELK</span><span class="skill-tag">Dynatrace</span><span
+                                class="skill-tag">OTel</span>
                         </div>
                         <div class="project-links">
-                            <a href="#"><i class="fas fa-lock"></i> Enterprise Project</a>
+                            <a href="#"><i class="fas fa-lock"></i> Enterprise</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card reveal">
-                    <div class="project-img"
-                        style="background: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80') center/cover;">
-                    </div>
+                <div class="bento-card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80"
+                        alt="SIEM Security" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">SIEM Log Integration System</h3>
-                        <p class="project-desc">Developed custom Logstash pipelines using Grok processors to normalize
-                            ERP logs and route them to a secure SIEM dashboard.</p>
-                        <div class="project-tech">
-                            <span>Logstash</span><span>Kibana</span><span>Grok</span>
+                        <h3 class="project-title">SIEM Log Integration</h3>
+                        <p class="project-desc">Developed custom Logstash pipelines using Grok to normalize ERP logs for
+                            SIEM dashboards.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Logstash</span><span class="skill-tag">Kibana</span><span
+                                class="skill-tag">Grok</span>
                         </div>
                         <div class="project-links">
-                            <a href="#"><i class="fas fa-lock"></i> Enterprise Project</a>
+                            <a href="#"><i class="fas fa-lock"></i> Enterprise</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card reveal">
-                    <div class="project-img"
-                        style="background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80') center/cover;">
-                    </div>
+                <div class="bento-card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?auto=format&fit=crop&w=400&q=80"
+                        alt="Infrastructure Diagram" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">Automated Infrastructure Provisioning</h3>
-                        <p class="project-desc">Built infrastructure-as-code modules using Terraform and Ansible to
-                            deploy scalable containerized agents across AWS and Azure.</p>
-                        <div class="project-tech">
-                            <span>Terraform</span><span>Ansible</span><span>AWS/Azure</span>
+                        <h3 class="project-title">Infra Provisioning</h3>
+                        <p class="project-desc">Built IaC modules using Terraform & Ansible to deploy scalable
+                            containerized agents.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Terraform</span><span class="skill-tag">Ansible</span><span
+                                class="skill-tag">AWS</span>
                         </div>
                         <div class="project-links">
-                            <a href="#"><i class="fas fa-lock"></i> Enterprise Project</a>
+                            <a href="#"><i class="fas fa-lock"></i> Enterprise</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card reveal">
-                    <div class="project-img"
-                        style="background: url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=400&q=80') center/cover;">
-                    </div>
+                <div class="bento-card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=400&q=80"
+                        alt="ELK Infrastructure" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">ELK Stack Infrastructure as Code</h3>
+                        <h3 class="project-title">ELK Stack IaC</h3>
                         <p class="project-desc">Automated provisioning and configuration of highly available
-                            Elasticsearch clusters and monitoring environments using Terraform.</p>
-                        <div class="project-tech">
-                            <span>Terraform</span><span>ELK Stack</span><span>IaC</span>
+                            Elasticsearch clusters.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Terraform</span><span class="skill-tag">ELK</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/asiridiaz/elk-terraform" target="_blank"><i
@@ -1182,34 +1105,31 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
-                    <div class="project-img"
-                        style="background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80') center/cover;">
-                    </div>
+                <div class="bento-card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80"
+                        alt="Asset Manager" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">NXTL Asset Manager</h3>
-                        <p class="project-desc">A centralized asset management tool developed to streamline the tracking
-                            and allocation of technical resources and infrastructure.</p>
-                        <div class="project-tech">
-                            <span>Backend</span><span>API</span><span>System Admin</span>
+                        <h3 class="project-title">Company Asset Manager</h3>
+                        <p class="project-desc">A centralized asset management tool to streamline tracking and
+                            allocation of tech resources.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Backend</span><span class="skill-tag">API</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/asiridiaz/NXTL-Asset-Manager" target="_blank"><i
-                                    class="fab fa-github"></i> GitHub</a>
+                            <a href="#"><i class="fas fa-lock"></i> Enterprise</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card reveal">
-                    <div class="project-img"
-                        style="background: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80') center/cover;">
-                    </div>
+                <div class="bento-card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80"
+                        alt="Delivery Rider" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">Rider Incentive Calculator</h3>
-                        <p class="project-desc">A logic-driven computational engine designed to process delivery metrics
-                            and automatically calculate dynamic rider incentives.</p>
-                        <div class="project-tech">
-                            <span>Algorithms</span><span>Backend</span><span>Data Processing</span>
+                        <h3 class="project-title">Rider Incentive Calc</h3>
+                        <p class="project-desc">A computational engine designed to process delivery metrics and
+                            calculate dynamic incentives.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Algorithms</span><span class="skill-tag">Backend</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/asiridiaz/delivery-rider-incentive-calculator"
@@ -1218,16 +1138,15 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
-                    <div class="project-img"
-                        style="background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80') center/cover;">
-                    </div>
+                <div class="bento-card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80"
+                        alt="Geo-Spatial Map" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">Geo-Spatial Visibility Controller</h3>
-                        <p class="project-desc">A location-based backend service developed to dynamically manage and
-                            filter restaurant visibility for users based on geographic coordinates.</p>
-                        <div class="project-tech">
-                            <span>Geo-fencing</span><span>API</span><span>Microservices</span>
+                        <h3 class="project-title">Geo-Spatial Controller</h3>
+                        <p class="project-desc">Location-based backend service developed to dynamically manage
+                            restaurant visibility by coordinates.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Geo-fencing</span><span class="skill-tag">API</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/asiridiaz/restaurant-visibility-controller-geo"
@@ -1236,16 +1155,15 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
-                    <div class="project-img"
-                        style="background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=400&q=80') center/cover;">
-                    </div>
+                <div class="bento-card project-card reveal">
+                    <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=400&q=80"
+                        alt="Ride Share" class="project-img">
                     <div class="project-info">
-                        <h3 class="project-title">Ride-Sharing Fare Engine</h3>
-                        <p class="project-desc">An algorithmic pricing calculator built to process distance, time, and
-                            demand factors to generate real-time ride-sharing fares.</p>
-                        <div class="project-tech">
-                            <span>Logic</span><span>Backend</span><span>API</span>
+                        <h3 class="project-title">Ride-Sharing Engine</h3>
+                        <p class="project-desc">Algorithmic pricing calculator built to process distance, time, and
+                            demand for real-time fares.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Logic</span><span class="skill-tag">Backend</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/asiridiaz/ride-sharing-calculator" target="_blank"><i
@@ -1258,30 +1176,299 @@
         </div>
     </section>
 
-    <section id="contact" class="bg-alt">
+    <section id="skills" class="bg-alt" style="padding-left: 0; padding-right: 0;">
         <div class="container">
-            <h2 class="section-title reveal">Get In Touch</h2>
-            <div class="contact-container reveal">
+            <h2 class="section-title reveal" style="text-align: center;">Technical & Leadership <span
+                    class="highlight">Arsenal</span></h2>
+            <div class="bento-grid" style="grid-template-columns: repeat(4, 1fr); gap: 20px;">
 
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p>Feel free to reach out for collaborations, consulting, or just a friendly chat about
-                        Observability!</p>
-
-                    <p><i class="fas fa-envelope"></i> &nbsp; asiri.cmb@gmail.com </p>
-                    <p><i class="fas fa-phone"></i> &nbsp; +94 772 238 676 </p>
-                    <p><i class="fas fa-map-marker-alt"></i> &nbsp; Colombo, Sri Lanka </p>
-
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/asiri-dias" target="_blank" aria-label="LinkedIn"><i
-                                class="fab fa-linkedin-in"></i></a>
-                        <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <div class="bento-card reveal" style="padding: 24px;">
+                    <h3><i class="fas fa-chart-line" style="color: var(--accent-main); margin-right: 8px;"></i>
+                        Observability</h3>
+                    <div class="skill-tags-modern" style="margin-top: 16px;">
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/dynatrace" alt="Dynatrace">
+                            <span>Dynatrace APM</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/elastic" alt="Elastic Stack">
+                            <span>Elastic Stack</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/elasticsearch"
+                                alt="Elasticsearch"> <span>Elasticsearch</span></div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/logstash" alt="Logstash">
+                            <span>Logstash</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/kibana" alt="Kibana">
+                            <span>Kibana</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/grafana" alt="Grafana">
+                            <span>Grafana</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/opentelemetry" alt="OTel">
+                            <span>OpenTelemetry</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="contact-form">
+                <div class="bento-card reveal" style="padding: 24px;">
+                    <h3><i class="fas fa-server" style="color: var(--accent-main); margin-right: 8px;"></i> Cloud &
+                        Infra</h3>
+                    <div class="skill-tags-modern" style="margin-top: 16px;">
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/terraform" alt="Terraform">
+                            <span>Terraform</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/docker" alt="Docker">
+                            <span>Docker</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes">
+                            <span>Kubernetes</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/microsoftazure" alt="Azure">
+                            <span>Azure</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/amazonaws" alt="AWS"> <span>AWS /
+                                ECS</span></div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/googlecloud" alt="GCP">
+                            <span>GCP</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/ansible" alt="Ansible">
+                            <span>Ansible</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/linux" alt="Linux">
+                            <span>Linux</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card reveal" style="padding: 24px;">
+                    <h3><i class="fas fa-code" style="color: var(--accent-main); margin-right: 8px;"></i> Engineering
+                    </h3>
+                    <div class="skill-tags-modern" style="margin-top: 16px;">
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/gnubash" alt="Bash">
+                            <span>Bash</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/powershell" alt="PowerShell">
+                            <span>PowerShell</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/javascript" alt="JavaScript">
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/php" alt="PHP"> <span>PHP</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/mysql" alt="MySQL"> <span>SQL /
+                                MySQL</span></div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/apachekafka" alt="Kafka">
+                            <span>Apache Kafka</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/postman" alt="Postman">
+                            <span>Postman API</span>
+                        </div>
+                        <div class="tech-badge"><img src="https://cdn.simpleicons.org/github" alt="GitHub">
+                            <span>GitHub</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card reveal" style="padding: 24px;">
+                    <h3><i class="fas fa-users" style="color: var(--accent-main); margin-right: 8px;"></i> Leadership
+                    </h3>
+                    <div class="skill-tags-modern" style="margin-top: 16px;">
+                        <div class="tech-badge"><i class="fas fa-user-tie"></i> <span>Team Leadership</span></div>
+                        <div class="tech-badge"><i class="fas fa-chalkboard-teacher"></i> <span>Mentoring & 9-Box</span>
+                        </div>
+                        <div class="tech-badge"><i class="fas fa-cogs"></i> <span>Operations Mgmt</span></div>
+                        <div class="tech-badge"><i class="fas fa-headset"></i> <span>Technical Support</span></div>
+                        <div class="tech-badge"><i class="fas fa-network-wired"></i> <span>System Admin</span></div>
+                        <div class="tech-badge"><i class="fas fa-project-diagram"></i> <span>Cross-Functional</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title reveal">Training & <span class="highlight">Certifications</span></h2>
+
+            <div class="cert-grid-centered">
+
+                <a href="https://www.credential.net/af7ef1aa-77b8-4a2e-b0c9-4f471890102c" target="_blank"
+                    class="bento-card cert-card reveal">
+                    <img src="https://cdn.simpleicons.org/elastic/10b981" alt="Elastic"
+                        style="width: 32px; height: 32px; object-fit: contain;">
+                    <div>
+                        <h3>Elastic Certified Engineer</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Elastic • Verified</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/asiri-l-dias/overlay/Certifications/713694780/treasury/?profileId=ACoAACMnAhgB2y83JR7ewrDfloHG9mb-1MkuaCg"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <img src="https://cdn.simpleicons.org/elasticsearch/10b981" alt="Elasticsearch"
+                        style="width: 32px; height: 32px; object-fit: contain;">
+                    <div>
+                        <h3>Elasticsearch Engineer</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Elastic (On-Demand)</p>
+                    </div>
+                </a>
+
+                <a href="https://www.credly.com/badges/43a97527-d0ec-4b5a-a2d2-d60a00c2ac74/linked_in_profile"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <img src="https://cdn.simpleicons.org/googlecloud/10b981" alt="Google Cloud"
+                        style="width: 32px; height: 32px; object-fit: contain;">
+                    <div>
+                        <h3>Associate Cloud Engineer</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Google Cloud</p>
+                    </div>
+                </a>
+
+                <a href="https://www.credly.com/badges/773e85e0-5cbb-488a-8165-7b73563d3f95/linked_in_profile"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <img src="https://cdn.simpleicons.org/googlecloud/10b981" alt="Compute Engine"
+                        style="width: 32px; height: 32px; object-fit: contain;">
+                    <div>
+                        <h3>Implement Load Balancing</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Google Compute Engine</p>
+                    </div>
+                </a>
+
+                <a href="https://rhtapps.redhat.com/verify?certId=200-176-501" target="_blank"
+                    class="bento-card cert-card reveal">
+                    <img src="https://cdn.simpleicons.org/redhat/10b981" alt="Red Hat"
+                        style="width: 32px; height: 32px; object-fit: contain;">
+                    <div>
+                        <h3>Red Hat System Admin</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">RHCSA</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/learning/certificates/b878a1553b3efe23c391997138f78bc4c7d014eaabe662ceef08b0bede060385?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BrgkTPVJiTQC0Stdd9KFpRA%3D%3D&accountId=2092340&u=2092340&success=true&authUUID=EchqRQzDTIauqyWhmdU%2FgA%3D%3D"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <img src="https://cdn.simpleicons.org/terraform/10b981" alt="Terraform"
+                        style="width: 32px; height: 32px; object-fit: contain;">
+                    <div>
+                        <h3>Advanced Terraform (2020)</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">HashiCorp</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/learning/certificates/c5203ca6efd0370e81d909a02eeedbf829cd7421d215a7baa1bffa0f2bbd9f49?u=2092340"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <img src="https://cdn.simpleicons.org/terraform/10b981" alt="Terraform"
+                        style="width: 32px; height: 32px; object-fit: contain;">
+                    <div>
+                        <h3>Learning Terraform</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">HashiCorp</p>
+                    </div>
+                </a>
+
+                <a href="https://university.scylladb.com/your-certificate/12CF97C8C-1275F76CB-1275F5088/"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <img src="https://cdn.simpleicons.org/scylladb/10b981" alt="ScyllaDB"
+                        style="width: 32px; height: 32px; object-fit: contain;">
+                    <div>
+                        <h3>S101: ScyllaDB Essentials</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">ScyllaDB</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/asiri-l-dias/overlay/Certifications/1525479499/treasury/?profileId=ACoAACMnAhgB2y83JR7ewrDfloHG9mb-1MkuaCg"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <i class="fas fa-stream"
+                        style="font-size: 1.8rem; color: var(--accent-main); width: 32px; text-align: center;"></i>
+                    <div>
+                        <h3>Getting Started w/ Redpanda</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Data Streaming</p>
+                    </div>
+                </a>
+
+                <a href="https://www.credly.com/badges/bd786435-c031-4a1b-897e-19dcdbe35731" target="_blank"
+                    class="bento-card cert-card reveal">
+                    <i class="fas fa-tasks"
+                        style="font-size: 1.8rem; color: var(--accent-main); width: 32px; text-align: center;"></i>
+                    <div>
+                        <h3>Scrum Foundation Prof.</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">CertiProf (SFPC)</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/learning/certificates/27222a5f18dd59dc381029d86d92909aacc44f9b865b14a162303fa6ca640bf2?u=2092340"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <i class="fas fa-award"
+                        style="font-size: 1.8rem; color: var(--accent-main); width: 32px; text-align: center;"></i>
+                    <div>
+                        <h3>Six Sigma: Black Belt</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Process Improvement</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/learning/certificates/caa269e7c8e418a272ca058ca70dcecfc925cfabff83552612d71d95e25b1d88?u=2092340"
+                    target="_blank" class="bento-card cert-card reveal">
+                    <i class="fas fa-medal"
+                        style="font-size: 1.8rem; color: var(--accent-main); width: 32px; text-align: center;"></i>
+                    <div>
+                        <h3>Six Sigma: Green Belt</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Process Improvement</p>
+                    </div>
+                </a>
+
+                <a href="YOUR_LINK_HERE" target="_blank" class="bento-card cert-card reveal">
+                    <i class="fas fa-microphone-alt"
+                        style="font-size: 1.8rem; color: var(--accent-main); width: 32px; text-align: center;"></i>
+                    <div>
+                        <h3>Toastmasters Speech Craft</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Public Speaking</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/feed/update/urn:li:activity:6333199735939272704/" target="_blank"
+                    class="bento-card cert-card reveal">
+                    <i class="fas fa-users-cog"
+                        style="font-size: 1.8rem; color: var(--accent-main); width: 32px; text-align: center;"></i>
+                    <div>
+                        <h3>Strategic Task Force</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Leadership Training</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-container reveal">
+                <div class="contact-info">
+                    <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px;">Let's build something <span
+                            class="highlight">great.</span></h2>
+                    <p>Feel free to reach out for collaborations, consulting, or just a friendly chat about
+                        Observability!</p>
+
+                    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 20px;">
+                        <a href="mailto:asiri.cmb@gmail.com"
+                            style="display: flex; align-items: center; gap: 16px; font-size: 1.1rem;"><i
+                                class="fas fa-envelope" style="color: var(--accent-main); font-size: 1.5rem;"></i>
+                            asiri.cmb@gmail.com</a>
+                        <div style="display: flex; align-items: center; gap: 16px; font-size: 1.1rem;"><i
+                                class="fas fa-phone" style="color: var(--accent-main); font-size: 1.5rem;"></i> +94 772
+                            238 676</div>
+                        <div style="display: flex; align-items: center; gap: 16px; font-size: 1.1rem;"><i
+                                class="fas fa-map-marker-alt" style="color: var(--accent-main); font-size: 1.5rem;"></i>
+                            Colombo, Sri Lanka</div>
+                    </div>
+
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/in/asiri-l-dias/" target="_blank" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/asiridiaz" target="_blank" aria-label="GitHub"><i
+                                class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="bento-card" style="padding: 40px;">
                     <form id="contactForm">
-                        <input type="hidden" name="access_key" value="f8542feb-425c-4d7d-9ba9-40b76c98de33">
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 
                         <div class="form-group">
                             <input type="text" name="name" class="form-control" placeholder="Your Name" required>
@@ -1290,22 +1477,23 @@
                             <input type="email" name="email" class="form-control" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" class="form-control" placeholder="Your Message"
+                            <textarea name="message" class="form-control" placeholder="What's on your mind?"
                                 required></textarea>
                         </div>
-                        <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%;">Send Message
+                            <i class="fas fa-paper-plane"></i></button>
 
-                        <p id="formStatus" style="display:none; margin-top:15px; font-weight:500;"></p>
+                        <p id="formStatus" style="display:none; margin-top:15px; font-weight:500; text-align: center;">
+                        </p>
                     </form>
                 </div>
-
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Asiri Dias. All rights reserved.</p>
+            <p>&copy; 2026 Asiri Dias. Architecture & Observability.</p>
         </div>
     </footer>
 
@@ -1317,24 +1505,26 @@
         const htmlElement = document.documentElement;
         const themeIcon = themeToggle.querySelector('i');
 
-        // Check system preference or localStorage
         const savedTheme = localStorage.getItem('theme');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+            htmlElement.setAttribute('data-theme', 'light');
+            themeIcon.className = 'fas fa-moon';
+        } else {
             htmlElement.setAttribute('data-theme', 'dark');
             themeIcon.className = 'fas fa-sun';
         }
 
         themeToggle.addEventListener('click', () => {
-            if (htmlElement.getAttribute('data-theme') === 'light') {
-                htmlElement.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
-            } else {
+            if (htmlElement.getAttribute('data-theme') === 'dark') {
                 htmlElement.setAttribute('data-theme', 'light');
                 themeIcon.className = 'fas fa-moon';
                 localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         });
 
@@ -1349,7 +1539,6 @@
             icon.className = navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
         });
 
-        // Close menu when clicking a link
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -1357,50 +1546,33 @@
             });
         });
 
-        // --- Typing Animation [cite: 2, 27, 37] ---
-        // EDIT: Adjust typing strings here
+        // --- Typing Animation ---
         const phrases = ["Lead Observability Engineer", "Certified Elastic Engineer", "Dynatrace SME"];
-        let phraseIndex = 0;
-        let letterIndex = 0;
-        let currentText = "";
-        let isDeleting = false;
-        const typingSpeed = 100;
-        const deleteSpeed = 50;
-        const delayBetweenPhrases = 2000;
+        let phraseIndex = 0; let letterIndex = 0;
+        let currentText = ""; let isDeleting = false;
+        const typingSpeed = 100; const deleteSpeed = 50; const delayBetweenPhrases = 2000;
         const typingElement = document.getElementById('typing-text');
 
         function type() {
             const fullText = phrases[phraseIndex];
-
             if (isDeleting) {
-                currentText = fullText.substring(0, letterIndex - 1);
-                letterIndex--;
+                currentText = fullText.substring(0, letterIndex - 1); letterIndex--;
             } else {
-                currentText = fullText.substring(0, letterIndex + 1);
-                letterIndex++;
+                currentText = fullText.substring(0, letterIndex + 1); letterIndex++;
             }
-
             typingElement.textContent = currentText;
-
             let typeSpeed = isDeleting ? deleteSpeed : typingSpeed;
-
             if (!isDeleting && currentText === fullText) {
-                typeSpeed = delayBetweenPhrases;
-                isDeleting = true;
+                typeSpeed = delayBetweenPhrases; isDeleting = true;
             } else if (isDeleting && currentText === "") {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500;
+                isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typeSpeed = 500;
             }
-
             setTimeout(type, typeSpeed);
         }
-
         document.addEventListener('DOMContentLoaded', type);
 
         // --- Scroll Reveal Animation ---
         const revealElements = document.querySelectorAll('.reveal');
-
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1408,8 +1580,7 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15 });
-
+        }, { threshold: 0.1 });
         revealElements.forEach(el => revealObserver.observe(el));
 
         // --- Active Nav Link Update & Scroll To Top ---
@@ -1420,16 +1591,11 @@
             let current = '';
             const scrollY = window.pageYOffset;
 
-            // Scroll to top button visibility
-            if (scrollY > 500) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
+            if (scrollY > 400) { scrollToTopBtn.classList.add('show'); }
+            else { scrollToTopBtn.classList.remove('show'); }
 
-            // Update active nav link
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 150;
                 const sectionHeight = section.clientHeight;
                 if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
@@ -1444,39 +1610,30 @@
             });
         });
 
-        // Scroll to top action
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-        // --- Asynchronous Contact Form Logic (No Redirect) ---
+        // --- Asynchronous Contact Form Logic ---
         document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Stop the default form redirect
-
+            event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
             const submitBtn = document.getElementById('submitBtn');
             const statusText = document.getElementById('formStatus');
 
-            // 1. Show loading state on the button
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             statusText.style.display = 'none';
 
-            // 2. Send the data silently via Web3Forms API
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-            })
+            fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
                 .then(response => response.json())
                 .then(data => {
                     statusText.style.display = 'block';
                     if (data.success) {
-                        statusText.style.color = '#10b981'; // Success Green
+                        statusText.style.color = 'var(--accent-main)';
                         statusText.textContent = 'Message sent successfully!';
-                        form.reset(); // Clear the form
+                        form.reset();
                     } else {
-                        statusText.style.color = '#ef4444'; // Error Red
+                        statusText.style.color = '#ef4444';
                         statusText.textContent = 'Something went wrong. Please try again.';
                     }
                 })
@@ -1486,14 +1643,9 @@
                     statusText.textContent = 'Network error. Please check your connection.';
                 })
                 .finally(() => {
-                    // 3. Revert button back to normal
-                    submitBtn.innerHTML = 'Send Message';
+                    submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
                     submitBtn.disabled = false;
-
-                    // Hide the success message after 5 seconds
-                    setTimeout(() => {
-                        statusText.style.display = 'none';
-                    }, 5000);
+                    setTimeout(() => { statusText.style.display = 'none'; }, 5000);
                 });
         });
     </script>
